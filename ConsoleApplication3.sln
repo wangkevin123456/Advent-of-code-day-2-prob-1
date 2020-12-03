@@ -1,31 +1,37 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication3", "ConsoleApplication3.vcxproj", "{DDCABD71-4E87-4886-B500-9402D47DC440}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Debug|x64.ActiveCfg = Debug|x64
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Debug|x64.Build.0 = Debug|x64
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Debug|x86.ActiveCfg = Debug|Win32
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Debug|x86.Build.0 = Debug|Win32
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Release|x64.ActiveCfg = Release|x64
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Release|x64.Build.0 = Release|x64
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Release|x86.ActiveCfg = Release|Win32
-		{DDCABD71-4E87-4886-B500-9402D47DC440}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {315EBDE7-6D60-4C89-9E54-14B6E219C552}
-	EndGlobalSection
-EndGlobal
+#include <stdio.h>
+
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+
+int main() {
+
+    FILE* input = fopen("C:\\Users\\Work\\Downloads\\day2 p1.txt", "r");
+    int s = 0;
+
+    int min, max;
+    int cS;
+    char letter;
+    char c[50];
+    int i;
+    char useless;
+    char useless2;
+
+    // fscanf(input,"%d %d %c  %s", &min, &max, &letter, &c);
+    // printf("min %d, max %d, letter %c, string %s\n", min, max, letter, c);
+
+    while (!(feof(input))) {
+        fscanf(input, "%d %c %d %c %c %s", &min, &useless2, &max, &letter, &useless, &c);
+        printf("min %d, max %d, letter %c, string %s\n", min, max, letter, c);
+        cS = 0;
+        i = 0;
+
+        if (c[min-1] == letter || c[max-1] == letter)
+            s++;
+
+        if (c[min-1] == letter && c[max-1] == letter)
+            s--;
+    }
+
+    fclose(input);
+    printf("%d valid passwords\n", s);
+    return 0;
